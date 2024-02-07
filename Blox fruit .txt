@@ -1,0 +1,47 @@
+
+
+
+
+-- Corrected library loading
+local library, pointers = loadstring(game:HttpGet("https://pastebin.com/raw/Q43KL2RS"))()
+if not library then
+    error("Failed to load the library.")
+end
+
+-- Your existing code ...
+
+local menu_section = settings_page:Section({name = "Menu"})
+do
+    -- Your existing code for the "Menu" section
+
+    -- Adding Auto Farm Button
+    menu_section:Button({
+        name = "Auto Farm",
+        callback = function()
+            _G.AutoFarmLevelReal = not _G.AutoFarmLevelReal  -- Toggle the Auto Farm state
+            print("Auto Farm activated:", _G.AutoFarmLevelReal)
+        end
+    })
+end
+
+-- Your existing code ...
+
+-- Linking with Auto Farm code
+spawn(function()
+    while wait() do
+        if _G.AutoFarmLevelReal then
+            FastAttack = true
+        else
+            FastAttack = false
+        end
+    end
+end)
+
+local function QuestCheck()
+    -- Your existing code for QuestCheck
+end
+
+
+
+
+
